@@ -1,0 +1,63 @@
+﻿
+ <style type="text/css">
+ 
+#container{
+ 
+height: 100%;
+ 
+width: 100%;
+ 
+}
+ 
+section,.AMapArea{
+ 
+height: 100%!important;
+ 
+margin: 0px;
+ 
+padding: 0px;
+ 
+}
+ 
+</style>
+ 
+<ion-view view-title="景区地图">
+    <ion-nav-buttons side="left">
+      <button class="button  button-icon icon ion-navicon" ng-click="locationAppSetting()">
+        <!--应用设置-->
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button  button-icon icon ion-settings" ng-click="mapSetting()">
+         <!--地图设置-->
+      </button>
+    </ion-nav-buttons>
+<ion-content>
+<div id="" class="bar bar-header" ng-show='btnBarShow'>
+ 
+  <div class="button-bar">
+  <!--<a class="button button-positive" href="#/tab/dashbuilding">文化遗产</a>-->  
+  <button class="button button-positive" ng-click="beginDraw('H')">文化遗产</button>
+  <a class="button button-calm" ng-click="beginDraw('I')">特定建筑</a>
+  <a class="button button-balanced" ng-click="beginDraw('M')">男员工</a>
+  <a class="button button-balanced" ng-click="beginDraw('W')">女员工</a>
+  <a class="button button-dark"  ng-click="beginDraw('T')">车辆设备</a>
+</div>
+</div>
+
+<div class="AMapArea" id="amap">
+ 
+<div id="{{AMapId}}"></div>
+ 
+{{
+initAMap();addFixedIcons();ListenClick();MapRefresh();isInitialed=true;
+}}
+ 
+<!---->{{}}
+<!---->{{}}
+ 
+</div>
+ 
+</ion-content>
+ 
+</ion-view>
