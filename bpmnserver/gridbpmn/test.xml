@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>                   
+<?xml-stylesheet type="text/xsl" href="test.xslt"?>
+<xml>                                                   
+  <book name="test">                                                 
+    <name>Xml应用系列</name>                             
+    <author>学路的小孩</author>                          
+    <date>2009-03-23</date>                              
+  </book>                                                
+</xml>                                                   

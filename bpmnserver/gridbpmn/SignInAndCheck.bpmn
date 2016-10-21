@@ -1,0 +1,81 @@
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:process id="Process_1">
+    <bpmn:startEvent id="StartEvent_1" name="StartSignIn">
+      <bpmn:outgoing>SequenceFlow_1vxy5ht</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_1lt29vw" name="TaskSignIn">
+      <bpmn:incoming>SequenceFlow_1vxy5ht</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0exjg7f</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:boundaryEvent id="BoundaryEvent_03cjecm" name="EventOnWorkTime" attachedToRef="Task_1lt29vw">
+      <bpmn:outgoing>SequenceFlow_100ho42</bpmn:outgoing>
+      <bpmn:timerEventDefinition />
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0exjg7f" sourceRef="Task_1lt29vw" />
+    <bpmn:sequenceFlow id="SequenceFlow_1vxy5ht" sourceRef="StartEvent_1" targetRef="Task_1lt29vw" />
+    <bpmn:endEvent id="EndEvent_0yrpkk5" name="EndSignIn">
+      <bpmn:incoming>SequenceFlow_1rlvn6h</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_194wdkh" targetRef="EndEvent_0yrpkk5" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_13nvuut" name="GWIsSignInTime">
+      <bpmn:incoming>SequenceFlow_1r6wutw</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_09sharv</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1r61cst</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_1r6wutw" sourceRef="ExclusiveGateway_0g117vh" targetRef="ExclusiveGateway_13nvuut" />
+    <bpmn:parallelGateway id="ExclusiveGateway_0g117vh" name="GWCheckTimeOrLocation">
+      <bpmn:incoming>SequenceFlow_17ftd7t</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1r6wutw</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_022xla1</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_1lhe0yb" name="GWIsSignInPosition">
+      <bpmn:incoming>SequenceFlow_022xla1</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_088dm4m</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1bj92lc</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_022xla1" sourceRef="ExclusiveGateway_0g117vh" targetRef="ExclusiveGateway_1lhe0yb" />
+    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_04qksif" name="EventSendNotInPosition">
+      <bpmn:incoming>SequenceFlow_088dm4m</bpmn:incoming>
+      <bpmn:messageEventDefinition />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_1lxre3m" name="EventSendNotOnTime">
+      <bpmn:incoming>SequenceFlow_09sharv</bpmn:incoming>
+      <bpmn:messageEventDefinition />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_09sharv" sourceRef="ExclusiveGateway_13nvuut" targetRef="IntermediateThrowEvent_1lxre3m" />
+    <bpmn:sequenceFlow id="SequenceFlow_088dm4m" sourceRef="ExclusiveGateway_1lhe0yb" targetRef="IntermediateThrowEvent_04qksif" />
+    <bpmn:endEvent id="EndEvent_0hj9ood" name="EndCheckSignIn">
+      <bpmn:incoming>SequenceFlow_1rte46j</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1rte46j" sourceRef="Task_0fmcp1k" targetRef="EndEvent_0hj9ood" />
+    <bpmn:startEvent id="StartEvent_0julevb" name="StartCheckSignIn">
+      <bpmn:outgoing>SequenceFlow_1hvq1se</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_17ftd7t" sourceRef="IntermediateThrowEvent_1tfktp4" targetRef="ExclusiveGateway_0g117vh" />
+    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_1tfktp4" name="EventOnSignInData">
+      <bpmn:incoming>SequenceFlow_1hvq1se</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_17ftd7t</bpmn:outgoing>
+      <bpmn:messageEventDefinition />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1hvq1se" sourceRef="StartEvent_0julevb" targetRef="IntermediateThrowEvent_1tfktp4" />
+    <bpmn:sendTask id="Task_0fmcp1k" name="TaskSignInChecked">
+      <bpmn:incoming>SequenceFlow_0s1caqe</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1rte46j</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="SequenceFlow_100ho42" sourceRef="BoundaryEvent_03cjecm" targetRef="IntermediateThrowEvent_1xrsofw" />
+    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_1xrsofw" name="EventSendSignInData">
+      <bpmn:incoming>SequenceFlow_100ho42</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1rlvn6h</bpmn:outgoing>
+      <bpmn:messageEventDefinition />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1rlvn6h" sourceRef="IntermediateThrowEvent_1xrsofw" targetRef="EndEvent_0yrpkk5" />
+    <bpmn:sequenceFlow id="SequenceFlow_1r61cst" sourceRef="ExclusiveGateway_13nvuut" targetRef="ExclusiveGateway_0wmrd29" />
+    <bpmn:sequenceFlow id="SequenceFlow_1bj92lc" sourceRef="ExclusiveGateway_1lhe0yb" targetRef="ExclusiveGateway_0wmrd29" />
+    <bpmn:parallelGateway id="ExclusiveGateway_0wmrd29" name="GWOnlyTimeAndPosition">
+      <bpmn:incoming>SequenceFlow_1r61cst</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1bj92lc</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0s1caqe</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_0s1caqe" sourceRef="ExclusiveGateway_0wmrd29" targetRef="Task_0fmcp1k" />
+  </bpmn:process>
+</bpmn:definitions>

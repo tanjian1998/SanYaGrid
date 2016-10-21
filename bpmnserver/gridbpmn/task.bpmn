@@ -1,0 +1,18 @@
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+
+   <bpmn:process id="Process_1"  name="Process_1">
+    <bpmn:startEvent id="StartEvent_1" name="MyStart">
+      <bpmn:outgoing>SequenceFlow_1jvmexn</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_075njm2" name="MyTask">
+      <bpmn:incoming>SequenceFlow_1jvmexn</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1qyigsn</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_1jvmexn" sourceRef="StartEvent_1" targetRef="Task_075njm2" />
+    <bpmn:endEvent id="EndEvent_1k5kte3" name="MyEnd">
+      <bpmn:incoming>SequenceFlow_1qyigsn</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1qyigsn" sourceRef="Task_075njm2" targetRef="EndEvent_1k5kte3" />
+  </bpmn:process>
+
+</bpmn:definitions>

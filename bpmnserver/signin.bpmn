@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:process id="Process_1">
+    <bpmn:startEvent id="StartEvent_1" name="StartSignIn">
+      <bpmn:outgoing>SequenceFlow_1x92e1i</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1x92e1i" sourceRef="StartEvent_1" targetRef="Task_1042xb8" />
+    <bpmn:endEvent id="EndEvent_0vtw2cp" name="EndSignIn">
+      <bpmn:incoming>SequenceFlow_1bmfs3r</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1bmfs3r" sourceRef="Task_1042xb8" targetRef="EndEvent_0vtw2cp" />
+    <bpmn:dataObjectReference id="DataObjectReference_10y4c4m" name="DataSignIn" dataObjectRef="DataObject_0b4ge64" />
+    <bpmn:dataObject id="DataObject_0b4ge64" />
+    <bpmn:userTask id="Task_1042xb8" name="TaskSignIn">
+      <bpmn:incoming>SequenceFlow_1x92e1i</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1bmfs3r</bpmn:outgoing>
+      <bpmn:property id="Property_0qm82sb" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0kd8ytt">
+        <bpmn:sourceRef>DataObjectReference_10y4c4m</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0qm82sb</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:userTask>
+  </bpmn:process>
+
+</bpmn:definitions>

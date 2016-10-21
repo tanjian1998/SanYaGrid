@@ -1,0 +1,4 @@
+网格化工作流程Bpmn2.0模型文件及对应的handler.js文件
+
+数据处理方式，
+1、删掉process元素上 isExecutable="false"

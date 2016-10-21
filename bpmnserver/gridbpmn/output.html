@@ -1,0 +1,24 @@
+﻿<html>
+<body>
+
+<script type="text/javascript">
+
+// Load XML 
+var xml = new ActiveXObject("Microsoft.XMLDOM")
+xml.async = false
+xml.load("signin.bpmn")
+
+// Load XSL
+var xsl = new ActiveXObject("Microsoft.XMLDOM")
+xsl.async = false
+xsl.load("transform.xslt")
+
+// Transform
+var str=xml.transformNode(xsl);
+alert(str);
+document.write(str);
+
+</script>
+
+</body>
+</html>
